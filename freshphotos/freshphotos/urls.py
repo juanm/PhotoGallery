@@ -18,7 +18,9 @@ urlpatterns = patterns('',
     # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
     url(r'^gallery/(\d+)/$', 'photos.views.gallery', name='gallery-detail'),
+    url(r'^gallery/(\d+)/(carousel)/$', 'photos.views.gallery'),
     url(r'^photo/(\d+)/$', 'photos.views.photo', name='photo-detail'),
+
 )
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

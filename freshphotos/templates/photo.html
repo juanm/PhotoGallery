@@ -5,13 +5,13 @@
 		<link rel="Stylesheet" type="text/css" href="{{ STATIC_URL }}/Styles/main.css" />
 	</head>
 	<body>
-		<h1>{{photo.name}}</h1>
+		<h1>{{photo.name|upper}}</h1>
 		<p>{{photo.description}}</p>  
 	{% if photo.visible_by == 1 %}
 	<strong>ADMIN ONLY</strong>
 	{% endif %}
 		<img src="{{ photo.filename.url }}" height = 300 >
-		<p>Added on {{photo.created}}</p>
+		<p>Uploaded {{photo.created|timesince}} ago</p>
 		<p>Galleries:</p>
 		<ul>
 		{% for gallery in photo.galleries.all %}

@@ -5,12 +5,16 @@ from photos.models import Photo
 class GalleryAdmin(admin.ModelAdmin):
     list_display = ('id', 'name', 'description')
  
-admin.site.register(Gallery, GalleryAdmin)
 
 
 class PhotoAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name', 'filename', 'created')
+    list_display = ('id', 'picture', 'name', 'filename', 'created')
+
+    def picture(self, photo):
+        return '<img src= "%s" height="100px" />' % photo.filename.url
+    picture.allow_tags = True
 
 admin.site.register(Photo, PhotoAdmin)
+admin.site.register(Gallery, GalleryAdmin)
 
 

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>{{gallery.name}}</title>
+		<link rel="Stylesheet" type="text/css" href="{{ STATIC_URL }}/Styles/main.css" />
+	</head>
+	<body>
+		<h1>{{gallery.name}}</h1>
+		<p>{{gallery.description}}</p>
+		{% for photo in gallery.photo_set.all %}
+			<li>
+			{{photo.name}}
+			<p>{{photo.comments}}</p>
+			<a href="{% url photo-detail photo.id %}"><img src="{{ photo.filename.url }}" alt="{{photo.name}}" height="100" /></a>
+			{% if photo == gallery.best_photo %}
+			<br>
+				Best photo!
+			{% endif %}	
+		{% endfor %}
+	</body>
+<html>
+

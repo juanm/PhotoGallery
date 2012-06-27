@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>{{photo.name}}</title>
+		<link rel="Stylesheet" type="text/css" href="{{ STATIC_URL }}/Styles/main.css" />
+	</head>
+	<body>
+		<h1>{{photo.name}}</h1>
+		<p>{{photo.description}}</p>  
+	{% if photo.visible_by == 1 %}
+	<strong>ADMIN ONLY</strong>
+	{% endif %}
+		<img src="{{ photo.filename.url }}" height = 300 >
+		<p>Added on {{photo.created}}</p>
+		<p>Galleries:</p>
+		<ul>
+		{% for gallery in photo.galleries.all %}
+		<li>
+		<a href="{% url gallery-detail gallery.id %}"> {{gallery.name}}</a>
+		{% if photo == gallery.best_photo %}
+				Best photo of this gallery!
+				<p></p>
+		{% endif %}	
+		{% endfor %}
+		</ul>
+	</body>
+<html>

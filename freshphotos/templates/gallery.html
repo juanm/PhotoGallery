@@ -1,23 +1,38 @@
 <!DOCTYPE html>
+<html>
+    <head>
+        <title>page title</title>
+        <link rel="stylesheet" href="/static/styles/main.css" />
+    </head>
+    <body class="full-content">
+        <div id="container">
 
-<html>
-	<head>
-		<title>{{gallery.name}}</title>
-		<link rel="Stylesheet" type="text/css" href="{{ STATIC_URL }}/Styles/main.css" />
-	</head>
-	<body>
-		<h1>{{gallery.name}}</h1>
-		<p>{{gallery.description}}</p>
-		{% for photo in gallery.photo_set.all %}
-			<li>
-			{{photo.name}}
-			<p>{{photo.comments}}</p>
-			<a href="{% url photo-detail photo.id %}"><img src="{{ photo.filename.url }}" alt="{{photo.name}}" height="100" /></a>
-			{% if photo == gallery.best_photo %}
-			<br>
-				Best photo!
-			{% endif %}	
-		{% endfor %}
-	</body>
-<html>
+            <section id="page-content">
+                <div id="carousel">
+
+					<a href="#todo" class="next">next</a>
+					
+                    {% block thumbnails %}
+                    <ul>
+                    {% for photo in gallery.photo_set.all %}
+
+                    {% if photo = gallery.best_photo %}
+                    <li><a href="/photo/{{photo.id}}"><img src="{{photo.filename.url}}" height="350" caption="Best!" /></a></li>
+                    {% else %}
+                    <li><a href="/photo/{{photo.id}}"><img src="{{photo.filename.url}}" height="350" /></a></li>
+                    {% endif %}
+
+                    {% endfor %}
+                    </ul>
+
+                    {% endblock thumbnails %}
+                </div>
+            </section>
+        </div>
+
+        <script type="text/javascript" src="{{ STATIC_URL }}scripts/jquery.min.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}scripts/app.js"></script>
+    </body>
+</html>
+	
 

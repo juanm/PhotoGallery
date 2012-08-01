@@ -1,4 +1,4 @@
 PhotoGallery
 ============
 
-Learn To Program material.
+Learn To Program material

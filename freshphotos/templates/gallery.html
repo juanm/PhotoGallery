@@ -27,7 +27,16 @@
 
                     {% endblock thumbnails %}
                 </div>
-            </section>
+
+				<form method="post" action="" enctype="multipart/form-data">{%csrf_token%}
+					<ul> {{form.as_ul}}
+						<li> 
+							<input type="submit" value="Upload Photo"/> 
+						</li>
+					</ul>
+				</form>
+
+			</section>
         </div>
 
         <script type="text/javascript" src="{{ STATIC_URL }}scripts/jquery.min.js"></script>
